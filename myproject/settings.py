@@ -8,17 +8,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from decouple import config, Csv
-import dj_database_url
-
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-DATABASES={
-	'default': dj_database_url.config.(
-		default=config('DATABASE_URL')
-	)
-}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'django.contrib.humanize', 
+    'django.contrib.humanize',
 
     'widget_tweaks',
 
@@ -61,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	'.middleware.RequireLoginMiddleware', # Require login
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -145,11 +133,3 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-LOGIN_REQUIRED_URLS = (
-    r'(.*)',
-)
-LOGIN_REQUIRED_URLS_EXCEPTIONS = (
-    r'/admin(.*)$',
-)
-LOGIN_URL = '/admin'

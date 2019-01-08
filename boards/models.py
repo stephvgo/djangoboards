@@ -1,6 +1,3 @@
-from django.db import models
-
-# Create your models here.
 import math
 
 from django.contrib.auth.models import User
@@ -68,4 +65,4 @@ class Post(models.Model):
         return truncated_message.chars(30)
 
     def get_message_as_markdown(self):
-return mark_safe(markdown(self.message, safe_mode='escape'))
+        return mark_safe(markdown(self.message, safe_mode='escape'))
